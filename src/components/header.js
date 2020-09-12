@@ -15,7 +15,7 @@ const HeaderComponent = () => {
     return (
         <div>
             <h1>This is a Header Page {userName}</h1>
-            <button onDoubleClick={() => displayResult()}>Click Me</button>
+            <button onClick={() => displayResult()}>Click Me</button>
             <SubHeader dog={userName} location={userLocation}></SubHeader>
         </div>
     )

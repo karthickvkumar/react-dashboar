@@ -4,12 +4,13 @@ import ReactDOM from 'react-dom';
 import './index.css'
 import HeaderComponent from './components/header';
 import FooterComponent from './components/footer';
+import LoginPage from './pages/login';
 
 const App = () => {
     return (
         <div>
             <HeaderComponent></HeaderComponent>
-            <h1 className="header">Welcome to React</h1>
+            <LoginPage></LoginPage>
             <FooterComponent></FooterComponent>
         </div>
     )
