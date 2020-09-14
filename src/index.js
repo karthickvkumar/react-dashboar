@@ -7,11 +7,12 @@ import FooterComponent from './components/footer';
 import LoginPage from './pages/login';
 
 const App = () => {
+
     return (
         <div>
-            <HeaderComponent></HeaderComponent>
+            {/* <HeaderComponent></HeaderComponent> */}
             <LoginPage></LoginPage>
-            <FooterComponent></FooterComponent>
+            {/* <FooterComponent></FooterComponent> */}
         </div>
     )
 };
