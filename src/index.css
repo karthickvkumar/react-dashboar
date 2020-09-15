@@ -10,3 +10,8 @@ input{
     font-size: 26px;
     margin: 10px;
 }
+textarea{
+    width: 400px;
+    height: 75px;
+    font-size: 26px;
+}
