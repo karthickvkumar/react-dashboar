@@ -8,6 +8,9 @@ class Register extends Component {
             lastName: '',
             email: '',
             password: '',
+            gender: '',
+            hobbies: [],
+            city: '',
             dob: '',
             address: ''
         }
@@ -18,10 +21,31 @@ class Register extends Component {
     }
 
     handleChange = (event) => {
+        if (Array.isArray(this.state[event.target.name])) {
+            if (event.target.checked) {
+                this.state.hobbies.push(event.target.value);
+                this.setState({
+                    hobbies: this.state.hobbies
+                })
+            }
+            else {
+                let index = this.state.hobbies.findIndex((value, index) => {
+                    return value == event.target.value
+                });
+                this.state.hobbies.splice(index, 1);
+                this.setState({
+                    hobbies: this.state.hobbies
+                })
+            }
+
+        }
+        else {
+            this.setState({
+                [event.target.name]: event.target.value
+            })
+        }
         // console.log(event.target.name, event.target.value)
-        this.setState({
-            [event.target.name]: event.target.value
-        })
+
     }
 
     render() {
@@ -42,6 +66,23 @@ class Register extends Component {
                 <br></br>
                 <label>Enter Date of Birth: </label>
                 <input type="date" name="dob" onChange={this.handleChange} />
+                <br></br>
+                <label>Select your gender: </label>
+
+                <input className="radio-checkbox" type="radio" name="gender" value="male" onChange={this.handleChange} />Male
+
+                <input className="radio-checkbox" type="radio" name="gender" value="female" onChange={this.handleChange} />Female
+
+                <input className="radio-checkbox" type="radio" name="gender" value="others" onChange={this.handleChange} />Others
+                <br></br>
+                <label>Select your hobbies</label>
+                <input type="checkbox" className="radio-checkbox" value="cricket" name="hobbies" onChange={this.handleChange} />Cricket
+                <input type="checkbox" className="radio-checkbox" value="football" name="hobbies" onChange={this.handleChange} />Football
+                <input type="checkbox" className="radio-checkbox" value="vollyball" name="hobbies" onChange={this.handleChange} />Vollyball
+                <input type="checkbox" className="radio-checkbox" value="chess" name="hobbies" onChange={this.handleChange} />Chess
+                <input type="checkbox" className="radio-checkbox" value="basketball" name="hobbies" onChange={this.handleChange} />BasketBall
+                <input type="checkbox" className="radio-checkbox" value="hockey" name="hobbies" onChange={this.handleChange} />Hockey
+
                 <br></br>
                 <label>Enter your Address: </label>
                 <textarea name="address" placeholder="Enter your address.." onChange={this.handleChange}></textarea>
