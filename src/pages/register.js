@@ -12,12 +12,42 @@ class Register extends Component {
             hobbies: [],
             city: '',
             dob: '',
-            address: ''
+            address: '',
+            error_firstName: false,
+            error_lastName: false,
+            error_email: false,
+            error_password: false,
+            error_gender: false,
+            error_hobbies: false,
+            error_city: false,
+            error_dob: false,
+            error_address: false,
         }
     }
 
     onRegister() {
         console.log(this.state)
+        this.setState({
+            error_firstName: this.state.firstName == '' ? true : false,
+            error_lastName: this.state.lastName == '' ? true : false,
+            error_email: this.state.email == '' ? true : false,
+            error_password: this.state.password == '' ? true : false,
+            error_gender: this.state.gender == '' ? true : false,
+            error_hobbies: this.state.hobbies == '' ? true : false,
+            error_city: this.state.city == '' ? true : false,
+            error_dob: this.state.dob == '' ? true : false,
+            error_address: this.state.address == '' ? true : false
+        })
+        // if (this.state.firstName == '') {
+        //     this.setState({
+        //         error_firstName: true
+        //     })
+        // }
+        // else {
+        //     this.setState({
+        //         error_firstName: false
+        //     })
+        // }
     }
 
     handleChange = (event) => {
@@ -29,7 +59,7 @@ class Register extends Component {
                 })
             }
             else {
-                let index = this.state.hobbies.findIndex((value, index) => {
+                let index = this.state.hobbies.findIndex((value) => {
                     return value == event.target.value
                 });
                 this.state.hobbies.splice(index, 1);
@@ -44,8 +74,21 @@ class Register extends Component {
                 [event.target.name]: event.target.value
             })
         }
-        // console.log(event.target.name, event.target.value)
+    }
 
+    handleFocus = (event) => {
+        this.setState({
+            ["error_" + event.target.name]: false
+        })
+
+    }
+
+    handleBlur = (event) => {
+        if (event.target.value == '') {
+            this.setState({
+                ["error_" + event.target.name]: true
+            })
+        }
     }
 
     render() {
@@ -53,19 +96,25 @@ class Register extends Component {
             <div>
                 <h3>Welcome to Register Page</h3>
                 <label>Enter your First Name: </label>
-                <input type="text" name="firstName" placeholder="Enter your first name.." onChange={this.handleChange} />
+                <input type="text" name="firstName" placeholder="Enter your first name.." onChange={this.handleChange} onFocus={this.handleFocus} onBlur={this.handleBlur} />
+                {this.state.error_firstName && <span className="error-msg">Please enter your first name</span>}
                 <br></br>
                 <label>Enter your Last Name: </label>
-                <input type="text" name="lastName" placeholder="Enter your last name.." onChange={this.handleChange} />
+                <input type="text" name="lastName" placeholder="Enter your last name.." onChange={this.handleChange} onFocus={this.handleFocus} onBlur={this.handleBlur} />
+                {this.state.error_lastName && <span className="error-msg">Please enter your last name</span>}
                 <br></br>
                 <label>Enter your Email Id: </label>
-                <input type="text" name="email" placeholder="Enter your email id.." onChange={this.handleChange} />
+                <input type="text" name="email" placeholder="Enter your email id.." onChange={this.handleChange} onFocus={this.handleFocus} onBlur={this.handleBlur} />
+                {this.state.error_email && <span className="error-msg">Please enter your email</span>}
                 <br></br>
+
                 <label>Enter your Password: </label>
-                <input type="password" name="password" placeholder="Enter your password.." onChange={this.handleChange} />
+                <input type="password" name="password" placeholder="Enter your password.." onChange={this.handleChange} onFocus={this.handleFocus} onBlur={this.handleBlur} />
+                {this.state.error_password && <span className="error-msg">Please enter your password</span>}
                 <br></br>
                 <label>Enter Date of Birth: </label>
-                <input type="date" name="dob" onChange={this.handleChange} />
+                <input type="date" name="dob" onChange={this.handleChange} onFocus={this.handleFocus} onBlur={this.handleBlur} />
+                {this.state.error_dob && <span className="error-msg">Please select your dob</span>}
                 <br></br>
                 <label>Select your gender: </label>
 
@@ -75,6 +124,9 @@ class Register extends Component {
 
                 <input className="radio-checkbox" type="radio" name="gender" value="others" onChange={this.handleChange} />Others
                 <br></br>
+                {this.state.error_gender && <span className="error-msg">Please select your gender</span>}
+                <br></br>
+
                 <label>Select your hobbies</label>
                 <input type="checkbox" className="radio-checkbox" value="cricket" name="hobbies" onChange={this.handleChange} />Cricket
                 <input type="checkbox" className="radio-checkbox" value="football" name="hobbies" onChange={this.handleChange} />Football
@@ -82,10 +134,24 @@ class Register extends Component {
                 <input type="checkbox" className="radio-checkbox" value="chess" name="hobbies" onChange={this.handleChange} />Chess
                 <input type="checkbox" className="radio-checkbox" value="basketball" name="hobbies" onChange={this.handleChange} />BasketBall
                 <input type="checkbox" className="radio-checkbox" value="hockey" name="hobbies" onChange={this.handleChange} />Hockey
-
+                <br></br>
+                {this.state.error_hobbies && <span className="error-msg">Please select your hobbies</span>}
                 <br></br>
                 <label>Enter your Address: </label>
-                <textarea name="address" placeholder="Enter your address.." onChange={this.handleChange}></textarea>
+                <textarea name="address" placeholder="Enter your address.." onChange={this.handleChange} onFocus={this.handleFocus} onBlur={this.handleBlur}></textarea>
+                {this.state.error_address && <span className="error-msg">Please enter your address</span>}
+                <br></br>
+                <label>Select your city: </label>
+                <select name="city" onChange={this.handleChange} defaultValue={''}>
+                    <option value="" disabled>--Select any city--</option>
+                    <option value="Chennai">Chennai</option>
+                    <option value="Jaipur">Jaipur</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Pune">Pune</option>
+                </select>
+                <br></br>
+                {this.state.error_city && <span className="error-msg">Please select your city</span>}
                 <br></br>
                 <button onClick={() => this.onRegister()}>Register</button>
             </div>

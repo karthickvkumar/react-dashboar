@@ -22,3 +22,12 @@ textarea{
     margin: auto;
     margin-left: 20px
 }
+select{
+    width: 200px;
+    height: 35px;
+    font-size: 26px;
+}
+.error-msg{
+    color: red;
+    font-size: 22px;
+}
