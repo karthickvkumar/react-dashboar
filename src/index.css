@@ -31,3 +31,13 @@ select{
     color: red;
     font-size: 22px;
 }
+.closed-eye{
+    width: 50px;
+    height: 42px;
+}
+.open-eye{
+    width: 50px;
+}
+.align-icon{
+    
+}

@@ -6,6 +6,7 @@ import HeaderComponent from './components/header';
 import FooterComponent from './components/footer';
 import LoginPage from './pages/login';
 import Register from './pages/register';
+import HomePage from './pages/home';
 
 const App = () => {
 
@@ -13,7 +14,8 @@ const App = () => {
         <div>
             {/* <HeaderComponent></HeaderComponent> */}
             {/* <LoginPage></LoginPage> */}
-            <Register></Register>
+            {/* <Register></Register> */}
+            <HomePage></HomePage>
             {/* <FooterComponent></FooterComponent> */}
         </div>
     )

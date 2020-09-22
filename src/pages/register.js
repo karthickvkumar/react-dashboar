@@ -16,12 +16,14 @@ class Register extends Component {
             error_firstName: false,
             error_lastName: false,
             error_email: false,
+            error_email_format: true,
             error_password: false,
             error_gender: false,
             error_hobbies: false,
             error_city: false,
             error_dob: false,
             error_address: false,
+            password_icon: true
         }
     }
 
@@ -80,7 +82,11 @@ class Register extends Component {
         this.setState({
             ["error_" + event.target.name]: false
         })
-
+        if (event.target.name == 'email') {
+            this.setState({
+                error_email_format: true
+            })
+        }
     }
 
     handleBlur = (event) => {
@@ -89,11 +95,24 @@ class Register extends Component {
                 ["error_" + event.target.name]: true
             })
         }
+        if (event.target.name == 'email' && event.target.value != '') {
+            var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+            this.setState({
+                error_email_format: reg.test(event.target.value)
+            })
+        }
+    }
+
+    toggelIcon() {
+        this.setState({
+            password_icon: !this.state.password_icon
+        })
     }
 
     render() {
         return (
             <div>
+
                 <h3>Welcome to Register Page</h3>
                 <label>Enter your First Name: </label>
                 <input type="text" name="firstName" placeholder="Enter your first name.." onChange={this.handleChange} onFocus={this.handleFocus} onBlur={this.handleBlur} />
@@ -106,10 +125,14 @@ class Register extends Component {
                 <label>Enter your Email Id: </label>
                 <input type="text" name="email" placeholder="Enter your email id.." onChange={this.handleChange} onFocus={this.handleFocus} onBlur={this.handleBlur} />
                 {this.state.error_email && <span className="error-msg">Please enter your email</span>}
+                {!this.state.error_email_format && <span className="error-msg">Invalid Email Format</span>}
                 <br></br>
 
                 <label>Enter your Password: </label>
-                <input type="password" name="password" placeholder="Enter your password.." onChange={this.handleChange} onFocus={this.handleFocus} onBlur={this.handleBlur} />
+                <input type={this.state.password_icon ? 'password' : 'text'} name="password" placeholder="Enter your password.." onChange={this.handleChange} onFocus={this.handleFocus} onBlur={this.handleBlur} />
+
+                {this.state.password_icon ? <img src={require('../images/closed-eye.png')} className="closed-eye" onClick={() => this.toggelIcon()} /> : <img src={require('../images/open-eye.png')} className="open-eye" onClick={() => this.toggelIcon()} />}
+
                 {this.state.error_password && <span className="error-msg">Please enter your password</span>}
                 <br></br>
                 <label>Enter Date of Birth: </label>
