@@ -35,10 +35,10 @@ class HomePage extends Component {
         let users = this.state.userlist.map((user, index) => {
             return (
                 <div key={index}>
-                    <h3>The user name is {user.name}</h3>
-                    <h3>The user designation is {user.designation}</h3>
-                    <h3>The user location is {user.location}</h3>
-                    <h3>------------------------</h3>
+                    <h4>The user name is {user.name}</h4>
+                    <h4>The user designation is {user.designation}</h4>
+                    <h4>The user location is {user.location}</h4>
+                    <h4>------------------------</h4>
                 </div>
             )
         })
