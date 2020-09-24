@@ -4,23 +4,54 @@ class Checklist extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: '',
-            date: '',
-            description: ''
+            checklist: {
+                title: '',
+                date: '',
+                description: ''
+            },
+            error: {
+                title: '',
+                date: '',
+                description: ''
+            },
+            records: []
         }
     }
 
     handleInput = (event) => {
+        let data = { ...this.state.checklist, [event.target.name]: event.target.value }
         this.setState({
-            [event.target.name]: event.target.value
+            checklist: data
         })
     }
 
     onCreateChecklist() {
-        console.log(this.state)
+        this.state.records.push(this.state.checklist);
+        this.setState({
+            records: this.state.records
+        })
+    }
+
+    onDelete(index) {
+        this.state.records.splice(index, 1);
+        this.setState({
+            records: this.state.records
+        })
     }
 
     render() {
+        let listOfData = this.state.records.map((record, index) => {
+            return (
+                <tr key={index}>
+                    <td>{record.title}</td>
+                    <td>{record.date}</td>
+                    <td>{record.description}</td>
+                    <td>
+                        <button onClick={() => this.onDelete(index)}>Delete</button>
+                    </td>
+                </tr>
+            )
+        })
         return (
             <div>
                 <h4>ToDo - Checklist</h4>
@@ -35,14 +66,15 @@ class Checklist extends Component {
                                 <th>Title</th>
                                 <th>Due Date</th>
                                 <th>Description</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>{this.state.title}</td>
-                                <td>{this.state.date}</td>
-                                <td>{this.state.description}</td>
-                            </tr>
+                            {this.state.records.length > 0 ? listOfData :
+                                <tr>
+                                    <td colSpan="4">No Checklist Found</td>
+                                </tr>
+                            }
                         </tbody>
                     </table>
                 </div>
