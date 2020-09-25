@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 
 class HomePage extends Component {
     constructor(props) {
@@ -45,6 +46,11 @@ class HomePage extends Component {
 
         return (
             <div>
+                <NavLink to="/">Go back to Login Page</NavLink>
+                <br></br>
+                <NavLink to="/register">Go back to Register Page</NavLink>
+                <br></br>
+                <NavLink to="/list">Go back to Checklist Page</NavLink>
                 <h2>Welcome to Home page</h2>
                 {users}
             </div>

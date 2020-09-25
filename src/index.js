@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import './index.css'
 import HeaderComponent from './components/header';
@@ -12,14 +13,14 @@ import Checklist from './pages/checklist';
 const App = () => {
 
     return (
-        <div>
-            {/* <HeaderComponent></HeaderComponent> */}
-            <Checklist></Checklist>
-            {/* <LoginPage></LoginPage> */}
-            {/* <Register></Register> */}
-            {/* <HomePage></HomePage> */}
-            {/* <FooterComponent></FooterComponent> */}
-        </div>
+        <BrowserRouter>
+            <Switch>
+                <Route path="/" exact component={LoginPage}></Route>
+                <Route path="/register" component={Register}></Route>
+                <Route path="/home" component={HomePage}></Route>
+                <Route path="/list" component={Checklist}></Route>
+            </Switch>
+        </BrowserRouter>
     )
 };
 
