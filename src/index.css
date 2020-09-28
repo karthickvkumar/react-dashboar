@@ -1,6 +1,4 @@
-.header{
-    color: red;
-}
+
 body{
     font-size: 18px;
 }
@@ -67,4 +65,34 @@ select{
   text-align: left;
   background-color: #4CAF50;
   color: white;
+}
+.header{
+    height: 50px;
+    border: 2px solid black;
+}
+.wapper{
+    height: 90vh;
+    display: flex;
+    flex-direction: row;
+}
+.sidebar{
+    width: 250px;
+    border: 2px solid black;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
+.content{
+    width: 500px;
+    height: 90vh;
+}
+.nav-btn{
+    color: black;
+    text-decoration: none;
+    border: 1px solid black;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
+    
 }

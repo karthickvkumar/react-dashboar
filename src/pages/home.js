@@ -44,6 +44,8 @@ class HomePage extends Component {
             )
         })
 
+        let loginDate = this.props.history.location.state;
+
         return (
             <div>
                 <NavLink to="/">Go back to Login Page</NavLink>
@@ -51,7 +53,7 @@ class HomePage extends Component {
                 <NavLink to="/register">Go back to Register Page</NavLink>
                 <br></br>
                 <NavLink to="/list">Go back to Checklist Page</NavLink>
-                <h2>Welcome to Home page</h2>
+                <h2>Welcome to Home page, {loginDate.email}</h2>
                 {users}
             </div>
         );
