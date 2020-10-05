@@ -15,9 +15,9 @@ class NestedRouting extends Component {
                 </div>
                 <div className="wapper">
                     <div className="sidebar">
-                        <NavLink to="/mail" className="nav-btn">Inbox Page</NavLink>
-                        <NavLink to="/mail/sent" className="nav-btn">Sent Page</NavLink>
-                        <NavLink to="/mail/draft" className="nav-btn">Draft Page</NavLink>
+                        <NavLink to="/mail" className="nav-btn" activeClassName="active-btn" exact={true}>Inbox Page</NavLink>
+                        <NavLink to="/mail/sent" className="nav-btn" activeClassName="active-btn">Sent Page</NavLink>
+                        <NavLink to="/mail/draft" className="nav-btn" activeClassName="active-btn">Draft Page</NavLink>
                     </div>
                     <div className="content">
                         <Switch>

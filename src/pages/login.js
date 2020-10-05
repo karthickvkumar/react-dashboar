@@ -10,7 +10,7 @@ class LoginPage extends Component {
     }
 
     diplayResut() {
-        this.props.history.push('/home', this.state);
+        this.props.history.push('/mail', this.state);
     }
 
     handleChange = (event) => {

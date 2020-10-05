@@ -96,3 +96,9 @@ select{
     margin-right: 20px;
     
 }
+
+.active-btn{
+    color: white;
+    background-color: violet;
+    border: 1px solid rgb(161, 40, 161);
+}
