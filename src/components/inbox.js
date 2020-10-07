@@ -2,12 +2,22 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 class InboxComponent extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            user : {
+                data : []
+            }
+        }
+    }
 
     loadUser(){
         let url = "https://reqres.in/api/users?page=2";
         axios.get(url)
             .then( (response) => {
-                console.log(response)
+                this.setState({
+                    user : response.data
+                })
             })
             .catch( (error) => {
                 console.log(error)
@@ -15,10 +25,19 @@ class InboxComponent extends Component {
     }
 
     render() {
+        console.log(this.state.user)
+        let userList = this.state.user.data.map((value, index) => {
+            return(
+                <div key={index}>
+                    <span>The usename is {value.first_name} {value.last_name}</span>
+                </div>
+            )
+        })
         return (
             <div>
                 <h1>This is a INBOX Page</h1>
                 <button onClick={() => this.loadUser()}>Load User Infomaton</button>
+                {userList}
             </div>
         );
     }
