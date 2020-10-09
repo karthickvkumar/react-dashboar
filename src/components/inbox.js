@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import APIService from '../services/api';
 
 class InboxComponent extends Component {
     constructor(props){
@@ -11,17 +11,22 @@ class InboxComponent extends Component {
         }
     }
 
-    loadUser(){
+    async loadUser(){
         let url = "https://reqres.in/api/users?page=2";
-        axios.get(url)
-            .then( (response) => {
-                this.setState({
-                    user : response.data
-                })
-            })
-            .catch( (error) => {
-                console.log(error)
-            } )
+        let response = await APIService.getAPI(url);
+        this.setState({
+            user : response.data
+        })
+        // APIService.getAPI(url)
+        //         .then((response) => {
+        //             this.setState({
+        //                 user : response.data
+        //             })
+        //         })
+        //         .catch((error) => {
+        //             console.log(error)
+        //         })
+   
     }
 
     render() {
