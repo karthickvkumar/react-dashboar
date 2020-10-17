@@ -54,7 +54,7 @@ class NestedRouting extends Component {
     }
 
     render() {
-        console.log("This is render Method")
+        console.log(this.props.history.location.state)
         return (
             <div>
                 <div className="header">

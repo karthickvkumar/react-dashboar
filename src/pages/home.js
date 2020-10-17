@@ -53,7 +53,7 @@ class HomePage extends Component {
                 <NavLink to="/register">Go back to Register Page</NavLink>
                 <br></br>
                 <NavLink to="/list">Go back to Checklist Page</NavLink>
-                <h2>Welcome to Home page, {loginDate.email}</h2>
+                {/* <h2>Welcome to Home page, {loginDate.email}</h2> */}
                 {users}
             </div>
         );
