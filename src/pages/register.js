@@ -40,6 +40,8 @@ class Register extends Component {
             error_dob: this.state.dob == '' ? true : false,
             error_address: this.state.address == '' ? true : false
         })
+
+        this.props.history.push('/home', this.state)
         // if (this.state.firstName == '') {
         //     this.setState({
         //         error_firstName: true

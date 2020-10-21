@@ -33,6 +33,8 @@ class HomePage extends Component {
         }
     }
     render() {
+        let registerData = this.props.history.location.state;
+        console.log(registerData)
         let users = this.state.userlist.map((user, index) => {
             return (
                 <div key={index}>
@@ -44,10 +46,10 @@ class HomePage extends Component {
             )
         })
 
-        let loginDate = this.props.history.location.state;
 
         return (
             <div>
+                <h2>The register email is {registerData.email}</h2>
                 <NavLink to="/">Go back to Login Page</NavLink>
                 <br></br>
                 <NavLink to="/register">Go back to Register Page</NavLink>

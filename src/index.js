@@ -12,6 +12,7 @@ import Checklist from './pages/checklist';
 import NestedRouting from './pages/nested-routing';
 import LoginRef from './pages/login-ref';
 import ParentPage from './pages/parent';
+import RootParent from './pages/root-parent';
 
 const App = () => {
 
@@ -25,6 +26,7 @@ const App = () => {
                 <Route path="/list" component={Checklist}></Route>
                 <Route path="/login-ref" component={LoginRef}></Route>
                 <Route path="/parent" component={ParentPage}></Route>
+                <Route path="/root" component={RootParent}></Route>
             </Switch>
         </BrowserRouter>
     )
