@@ -14,9 +14,15 @@ import LoginRef from './pages/login-ref';
 import ParentPage from './pages/parent';
 import RootParent from './pages/root-parent';
 
+import { Provider } from 'react-redux'
+import configureStore from './redux/store/configure-store';
+
+const store = configureStore();
+
 const App = () => {
 
     return (
+        <Provider store={store}>
         <BrowserRouter>
             <Switch>
                 <Route path="/" exact component={LoginPage}></Route>
@@ -29,6 +35,8 @@ const App = () => {
                 <Route path="/root" component={RootParent}></Route>
             </Switch>
         </BrowserRouter>
+        </Provider>
+       
     )
 };
 

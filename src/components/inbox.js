@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import APIService from '../services/api';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import * as mailAction from '../redux/actions/mail-action';
+
 class InboxComponent extends Component {
     constructor(props){
         super(props);
@@ -29,6 +34,10 @@ class InboxComponent extends Component {
    
     }
 
+    triggerAction(){
+        this.props.actions.mailAction();
+    }
+
     render() {
         console.log(this.state.user)
         let userList = this.state.user.data.map((value, index) => {
@@ -42,10 +51,25 @@ class InboxComponent extends Component {
             <div>
                 <h1>This is a INBOX Page</h1>
                 <button onClick={() => this.loadUser()}>Load User Infomaton</button>
+                <button onClick={() => this.triggerAction()}>Load Redux Action</button>
                 {userList}
             </div>
         );
     }
 }
 
-export default InboxComponent;
+function mapStateToProps(state){
+    console.log(state)
+    return{
+        
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    return {
+        actions: bindActionCreators(mailAction, dispatch)
+    }
+
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(InboxComponent);
