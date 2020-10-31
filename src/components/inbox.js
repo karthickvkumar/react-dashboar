@@ -12,7 +12,8 @@ class InboxComponent extends Component {
         this.state = {
             user : {
                 data : []
-            }
+            },
+            todoValue : ''
         }
     }
 
@@ -34,25 +35,47 @@ class InboxComponent extends Component {
    
     }
 
-    triggerAction(){
-        this.props.actions.mailAction();
+    addValue(){
+        //console.log(this.state.todoValue)
+        this.props.actions.sendValue(this.state.todoValue);
+        this.setState({
+            todoValue: ''
+        })
     }
 
+    handleInputBox = (event) => {
+        this.setState({
+            todoValue: event.target.value
+        })
+    }   
+
     render() {
-        console.log(this.state.user)
         let userList = this.state.user.data.map((value, index) => {
             return(
                 <div key={index}>
                     <span>The usename is {value.first_name} {value.last_name}</span>
                 </div>
             )
+        });
+
+        let todoList = this.props.todoList.map((value, index) => {
+            return (
+                <li key={index}>
+                    {value}
+                </li>
+            )
         })
         return (
             <div>
                 <h1>This is a INBOX Page</h1>
                 <button onClick={() => this.loadUser()}>Load User Infomaton</button>
-                <button onClick={() => this.triggerAction()}>Load Redux Action</button>
-                {userList}
+                <br></br>
+                <input type="text" placeholder="Enter the value" value={this.state.todoValue} onChange={this.handleInputBox}/>
+                <button onClick={() => this.addValue()}>Add TODO</button>
+                <ul>
+                    {todoList}
+                </ul>
+                {/* {userList} */}
             </div>
         );
     }
@@ -61,7 +84,7 @@ class InboxComponent extends Component {
 function mapStateToProps(state){
     console.log(state)
     return{
-        
+        todoList : state.mailReducer.mailBox
     }
 }
 
